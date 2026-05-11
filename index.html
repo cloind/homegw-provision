@@ -524,5 +524,18 @@ function disconnect() {
 setStep(1)
 addLog('X25519 加密模組已就緒（離線可用）', 'ok')
 </script>
+  <script type="module">
+    import { x25519 } from 'https://cdn.jsdelivr.net/npm/@noble/curves@1.4.0/+esm'
+    window.X25519 = {
+      randomPrivateKey: () => x25519.utils.randomPrivateKey(),
+      getPublicKey: (priv) => x25519.getPublicKey(priv),
+      getSharedSecret: (priv, pub) => x25519.getSharedSecret(priv, pub)
+    }
+    document.getElementById('log').innerHTML = ''
+    const line = document.createElement('div')
+    line.className = 'ok'
+    line.textContent = '› X25519 加密模組已就緒'
+    document.getElementById('log').appendChild(line)
+  </script>
 </body>
 </html>
